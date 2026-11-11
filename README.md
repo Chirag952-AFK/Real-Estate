@@ -33,9 +33,14 @@ Create `backend/.env`:
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/real-estate-db
 NODE_ENV=development
+JWT_SECRET=your_jwt_secret_here
+JWT_EXPIRES_IN=7d
+CLIENT_URL=http://localhost:5173
+SEED_SAMPLE_DATA=false
 ```
 
 `MONGO_URI` is optional. If it is not set, the backend starts a temporary in-memory MongoDB database for local development.
+Set `SEED_SAMPLE_DATA=true` to automatically add sample properties when starting the backend in development. To seed manually, run `npm run seed:properties` from `backend`; use `npm run seed:properties:remove` to remove only sample properties.
 
 ### Frontend
 

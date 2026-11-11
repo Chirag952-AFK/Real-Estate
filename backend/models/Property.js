@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema(
   {
+    isSample: {
+      type: Boolean,
+      default: false,
+      select: false,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     title: {
       type: String,
       required: true,
@@ -84,5 +93,13 @@ const propertySchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+propertySchema.index({ price: 1 });
+propertySchema.index({ city: 1 });
+propertySchema.index({ listingType: 1 });
+propertySchema.index({ propertyType: 1 });
+propertySchema.index({ bedrooms: 1 });
+propertySchema.index({ bathrooms: 1 });
+propertySchema.index({ createdAt: -1 });
 
 module.exports = mongoose.model('Property', propertySchema);
