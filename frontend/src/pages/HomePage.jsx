@@ -343,9 +343,33 @@ function HomePage() {
       <header className="topbar">
         <div className="topbar-inner container">
           <div className="brand-group">
-            <div className="brand-icon">M</div>
-            <div className="brand-text">magicbricks</div>
+            <div className="brand-icon">C</div>
+            <div className="brand-text">Celestia</div>
           </div>
+
+          <form className="search-toolbar" onSubmit={handleSearch}>
+            <div className="search-row">
+              <input
+                type="search"
+                className="chip-box"
+                placeholder="Search by city, locality or property name"
+                value={filters.search}
+                onChange={(event) => setFilter('search', event.target.value)}
+                aria-label="Search properties"
+              />
+              <select
+                className="chip-box location-chip"
+                value={filters.city}
+                onChange={(event) => setFilter('city', event.target.value)}
+                aria-label="Filter by city"
+              >
+                <option value="">All Cities</option>
+                {filterOptions.cities.map((city) => <option key={city} value={city}>{city}</option>)}
+              </select>
+              <button type="submit" className="search-button">Search</button>
+            </div>
+            {filterOptionsError && <div className="status-box error">{filterOptionsError}</div>}
+          </form>
 
           <nav className="main-nav">
             {tabs.map((tab) => (
@@ -385,30 +409,6 @@ function HomePage() {
       <main className="container page-content">
         <section className="hero-section">
           <h1>Change your location, change your life</h1>
-
-          <form className="search-toolbar" onSubmit={handleSearch}>
-            <div className="search-row">
-              <input
-                type="search"
-                className="chip-box"
-                placeholder="Search by city, locality or property name"
-                value={filters.search}
-                onChange={(event) => setFilter('search', event.target.value)}
-                aria-label="Search properties"
-              />
-              <select
-                className="chip-box location-chip"
-                value={filters.city}
-                onChange={(event) => setFilter('city', event.target.value)}
-                aria-label="Filter by city"
-              >
-                <option value="">All Cities</option>
-                {filterOptions.cities.map((city) => <option key={city} value={city}>{city}</option>)}
-              </select>
-              <button type="submit" className="search-button">Search</button>
-            </div>
-            {filterOptionsError && <div className="status-box error">{filterOptionsError}</div>}
-          </form>
         </section>
 
         <section className="stats-section">
